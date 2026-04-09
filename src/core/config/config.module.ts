@@ -7,13 +7,22 @@ import { dbRegister } from "../../common/registers/db.register.js";
 import { environmentRegister } from "../../common/registers/environment.register.js";
 import { jwtRegister } from "../../common/registers/jwt.register.js";
 import { rateLimitRegister } from "../../common/registers/rate-limit.register.js";
+import { s3Register } from "../../common/registers/s3.register.js";
 
 @Module({
 	imports: [
 		CoreConfigModule.forRoot({
 			envFilePath: ".env",
 			isGlobal: true,
-			load: [cacheRegister, appRegister, dbRegister, environmentRegister, jwtRegister, rateLimitRegister],
+			load: [
+				cacheRegister,
+				appRegister,
+				dbRegister,
+				environmentRegister,
+				jwtRegister,
+				rateLimitRegister,
+				s3Register,
+			],
 			validationSchema: Joi.object({
 				APP_DESCRIPTION: Joi.string(),
 				APP_LOG_LEVEL: Joi.number().required().description("Logging level"),
@@ -39,6 +48,11 @@ import { rateLimitRegister } from "../../common/registers/rate-limit.register.js
 				THROTTLE_LIMIT: Joi.number().required().description("Rate limiting limit"),
 
 				THROTTLE_TTL: Joi.number().required().description("Rate limiting TTL"),
+
+				AWS_ACCESS_KEY_ID: Joi.string().allow("").description("Optional when using IAM roles"),
+				AWS_REGION: Joi.string().allow("").description("AWS region for S3"),
+				AWS_S3_BUCKET: Joi.string().allow("").description("Default S3 bucket name"),
+				AWS_SECRET_ACCESS_KEY: Joi.string().allow("").description("Optional when using IAM roles"),
 			}),
 		}),
 	],

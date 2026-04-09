@@ -1,0 +1,10 @@
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "../config/config.module.js";
+import { S3Service } from "./s3.service.js";
+
+@Module({
+	exports: [S3Service],
+	imports: [ConfigModule],
+	providers: [S3Service],
+})
+export class S3Module {}
