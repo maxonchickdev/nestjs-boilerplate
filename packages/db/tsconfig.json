@@ -21,6 +21,6 @@
 		"tsBuildInfoFile": "./.tsbuildinfo.typecheck",
 		"types": ["node"]
 	},
-	"exclude": ["node_modules", "dist", "prisma/generated"],
+	"exclude": ["node_modules", "dist", "src/generated"],
 	"include": ["src/**/*", "prisma.config.ts"]
 }

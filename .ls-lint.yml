@@ -1,3 +1,6 @@
+ignore:
+  - packages/db/src/generated
+
 ls:
   src:
     .dir: kebab-case

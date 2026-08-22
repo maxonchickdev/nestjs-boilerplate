@@ -11,7 +11,7 @@ const config: KnipConfig = {
 		"apps/web-tanstack": {},
 		"apps/web-vite": {},
 		"packages/db": {
-			ignore: ["prisma/generated/**"],
+			ignore: ["src/generated/**"],
 			ignoreDependencies: ["pg"],
 		},
 		"packages/shared": {},
