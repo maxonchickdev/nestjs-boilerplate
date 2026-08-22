@@ -1,6 +1,6 @@
 import { ApiProperty, ApiSchema } from "@nestjs/swagger";
+import type { User } from "@prisma/generated/client.js";
 import { Exclude } from "class-transformer";
-import type { User } from "../../../../prisma/generated/client.js";
 
 @ApiSchema({
 	description: "User RDO",
