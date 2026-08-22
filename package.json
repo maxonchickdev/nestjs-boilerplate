@@ -68,7 +68,7 @@
 		"lint:format:check": "biome format",
 		"lint:format:fix": "biome format --write",
 		"lint:fs:check": "ls-lint",
-		"lint:types:check": "npm run build -w @web-monorepo/db && tsc -p packages/db/tsconfig.json && tsc -p apps/backend-nestjs/tsconfig.json"
+		"lint:types:check": "tsc -p packages/db/tsconfig.json && tsc -p apps/backend-nestjs/tsconfig.json"
 	},
 	"version": "0.0.1",
 	"workspaces": [

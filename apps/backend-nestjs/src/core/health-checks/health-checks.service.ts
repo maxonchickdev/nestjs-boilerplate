@@ -1,12 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import {
-	HealthCheck,
-	HealthCheckResult,
-	HealthCheckService,
-	HealthIndicatorResult,
-	HealthIndicatorService,
-	PrismaHealthIndicator,
-} from "@nestjs/terminus";
+import { HealthCheck, HealthCheckResult, HealthCheckService, HealthIndicatorResult, HealthIndicatorService } from "@nestjs/terminus";
 import { InjectRedis } from "@nestjs-modules/ioredis";
 import { Redis } from "ioredis";
 import { PrismaService } from "../prisma/prisma.service.js";
@@ -17,8 +10,6 @@ export class HealthChecksService {
 		@InjectRedis() private readonly redis: Redis,
 		@Inject(HealthCheckService)
 		private readonly healthCheckService: HealthCheckService,
-		@Inject(PrismaHealthIndicator)
-		private readonly prismaHealthIndicator: PrismaHealthIndicator,
 		@Inject(PrismaService) private readonly prismaService: PrismaService,
 		@Inject(HealthIndicatorService)
 		private readonly healthIndicatorService: HealthIndicatorService,
@@ -27,9 +18,21 @@ export class HealthChecksService {
 	@HealthCheck()
 	check(): Promise<HealthCheckResult> {
 		return this.healthCheckService.check([
-			(): Promise<HealthIndicatorResult> => this.prismaHealthIndicator.pingCheck("postgres", this.prismaService),
+			(): Promise<HealthIndicatorResult> => this.pingPostgres(),
 			(): Promise<HealthIndicatorResult> => this.pingCheck("redis"),
 		]);
+	}
+
+	async pingPostgres(): Promise<HealthIndicatorResult> {
+		const indicator = this.healthIndicatorService.check("postgres");
+
+		try {
+			await this.prismaService.$queryRaw`SELECT 1`;
+			return indicator.up();
+		} catch (e) {
+			const message = e instanceof Error ? e.message : "Postgres service not started";
+			return indicator.down({ message });
+		}
 	}
 
 	async pingCheck(key: string): Promise<HealthIndicatorResult> {

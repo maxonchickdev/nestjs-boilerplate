@@ -51,8 +51,8 @@
 		"db:seed": "npm run db:seed -w @web-monorepo/db",
 		"db:studio": "npm run db:studio -w @web-monorepo/db",
 		"start": "tsx src/main",
-		"start:debug": "nest start --debug --watch",
-		"start:dev": "nest start --watch",
+		"start:debug": "nest start --debug --watch --exec tsx",
+		"start:dev": "nest start --watch --exec tsx",
 		"start:docs": "npx @compodoc/compodoc -p tsconfig.json -s",
 		"start:prod": "node dist/src/main"
 	},
