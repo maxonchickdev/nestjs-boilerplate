@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": true,
+		"noEmit": false,
+		"outDir": "./dist",
+		"rootDir": ".",
+		"sourceMap": true,
+		"tsBuildInfoFile": "./dist/.tsbuildinfo.build"
+	},
+	"exclude": ["node_modules", "dist"],
+	"extends": ["./tsconfig.json"],
+	"include": ["src/**/*", "prisma/generated/**/*.ts"]
+}

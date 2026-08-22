@@ -3,6 +3,7 @@
 		"noEmit": false,
 		"noEmitOnError": true,
 		"outDir": "./dist",
+		"rootDir": "./src",
 		"removeComments": true,
 		"tsBuildInfoFile": "./dist/.tsbuildinfo.build"
 	},

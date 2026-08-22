@@ -49,6 +49,13 @@
 		"url": "git+https://github.com/maxonchickdev/nestjs-boilerplate"
 	},
 	"scripts": {
+		"db:generate": "npm run db:generate -w @web-monorepo/db",
+		"db:migrate:deploy": "npm run db:migrate:deploy -w @web-monorepo/db",
+		"db:migrate:dev": "npm run db:migrate:dev -w @web-monorepo/db",
+		"db:migrate:reset": "npm run db:migrate:reset -w @web-monorepo/db",
+		"db:push": "npm run db:push -w @web-monorepo/db",
+		"db:seed": "npm run db:seed -w @web-monorepo/db",
+		"db:studio": "npm run db:studio -w @web-monorepo/db",
 		"docker:local:down": "docker compose -f docker-compose.yml down -v",
 		"docker:local:start": "docker compose -f docker-compose.yml start",
 		"docker:local:stop": "docker compose -f docker-compose.yml stop -t 10",
@@ -61,10 +68,11 @@
 		"lint:format:check": "biome format",
 		"lint:format:fix": "biome format --write",
 		"lint:fs:check": "ls-lint",
-		"lint:types:check": "tsc -p apps/backend-nestjs/tsconfig.json"
+		"lint:types:check": "npm run build -w @web-monorepo/db && tsc -p packages/db/tsconfig.json && tsc -p apps/backend-nestjs/tsconfig.json"
 	},
 	"version": "0.0.1",
 	"workspaces": [
+		"packages/db",
 		"packages/shared",
 		"apps/web-astro",
 		"apps/web-vite",
