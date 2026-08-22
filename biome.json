@@ -13,7 +13,7 @@
 		"enabled": true
 	},
 	"files": {
-		"includes": ["**", "!prisma/generated", "!src/generated"]
+		"includes": ["**", "!**/prisma/generated", "!**/src/generated"]
 	},
 	"formatter": {
 		"attributePosition": "auto",

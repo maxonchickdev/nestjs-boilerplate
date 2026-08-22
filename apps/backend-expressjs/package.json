@@ -1,5 +1,8 @@
 {
 	"author": "",
+	"dependencies": {
+		"@web-monorepo/prisma": "*"
+	},
 	"description": "",
 	"devDependencies": {},
 	"keywords": [],

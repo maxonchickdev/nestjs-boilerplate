@@ -1,5 +1,5 @@
 import { ApiProperty, ApiSchema } from "@nestjs/swagger";
-import type { Post } from "../../../../prisma/generated/client.js";
+import type { Post } from "@web-monorepo/prisma";
 
 @ApiSchema({
 	description: "Post RDO",

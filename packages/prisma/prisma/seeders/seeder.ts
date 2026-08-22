@@ -1,14 +1,15 @@
 import { faker } from "@faker-js/faker";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../generated/client.js";
+import { createPrismaClient } from "../../src/create-client.js";
 
 const NUMBER_OF_USERS = 5;
 
-const adapter = new PrismaPg({
-	connectionString: process.env.POSTGRES_URL,
-});
+const postgresUrl = process.env.POSTGRES_URL;
 
-const prisma = new PrismaClient({ adapter });
+if (!postgresUrl) {
+	throw new Error("Missing required environment variable POSTGRES_URL");
+}
+
+const prisma = createPrismaClient(postgresUrl);
 
 const main = async () => {
 	for (let i = 0; i < NUMBER_OF_USERS; i++) {

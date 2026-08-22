@@ -5,13 +5,17 @@ const config: KnipConfig = {
 	ignoreDependencies: ["tsconfig-paths", "pg"],
 	ignoreMembers: ["DEVELOPMENT", "STAGING", "P2002", "P2025"],
 	workspaces: {
-		"apps/backend-expressjs": {},
-		"apps/backend-nestjs": {
-			ignore: ["prisma/**"],
+		"apps/backend-expressjs": {
+			entry: ["src/**/*.ts"],
 		},
+		"apps/backend-nestjs": {},
 		"apps/web-astro": {},
 		"apps/web-tanstack": {},
 		"apps/web-vite": {},
+		"packages/prisma": {
+			entry: ["prisma/seeders/**/*.ts"],
+			ignore: ["prisma/generated/**"],
+		},
 		"packages/shared": {},
 	},
 };

@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"noEmit": false,
+		"outDir": "./dist",
+		"rootDir": "."
+	},
+	"exclude": ["node_modules", "dist", "prisma/seeders", "prisma.config.ts"],
+	"extends": ["./tsconfig.json"],
+	"include": ["src/**/*.ts", "prisma/generated/**/*.ts"]
+}

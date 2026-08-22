@@ -1,0 +1,38 @@
+{
+	"author": "",
+	"dependencies": {
+		"@prisma/adapter-pg": "^7.2.0",
+		"@prisma/client": "^7.2.0",
+		"pg": "^8.18.0"
+	},
+	"description": "Shared Prisma schema and client for web-monorepo backends",
+	"devDependencies": {
+		"@faker-js/faker": "^10.6.0",
+		"@types/node": "^25.6.0",
+		"prisma": "^7.2.0",
+		"tsx": "^4.19.2"
+	},
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./dist/src/index.js"
+		}
+	},
+	"keywords": [],
+	"license": "ISC",
+	"main": "./dist/src/index.js",
+	"name": "@web-monorepo/prisma",
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"db:generate": "prisma generate",
+		"db:migrate:deploy": "prisma migrate deploy",
+		"db:migrate:dev": "prisma migrate dev",
+		"db:migrate:reset": "prisma migrate reset",
+		"db:push": "prisma db push",
+		"db:seed": "prisma db seed",
+		"db:studio": "prisma studio --browser none",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"types": "./src/index.ts",
+	"version": "1.0.0"
+}
